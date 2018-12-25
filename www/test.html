@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no
+		initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+    <title>Eddystone Demo</title>
+</head>
+
+<style>
+    #buttons{
+        display: none;
+    }
+</style>
+
+<body>
+<h1>Compose-Demo</h1>
+
+<div id="buttons">
+    <button id="start-scan">Начать сканирование</button>
+    <button id="stop-scan">Закончить сканирование</button><br>
+    <input type="text" name="UID" value="5f-a2-b6-a6-f4">
+    <input type="text" name="RSSI" value="-55">
+    <input type="text" name="TxPower" value="-60">
+    <button id="add-beacon">Добавить маяк</button><br>
+    <button id="calculate">Расчитать дистацнцию</button>
+    <button id="get-distance-all">Вывести расстояние от всех меток</button>
+    <button id="filter">Отфильтруй</button>
+    <button id="show">Покажи</button>
+</div>
+<div id="message"></div>
+<div id="found-beacons">
+    <div id="container"></div>
+</div>
+<div id="beacons-arr"></div>
+<div id="rssi-arr"></div>
+<div id="filtered-rssi-arr"></div>
+
+
+<div id="kalman-area"></div>
+
+<script src="js/training.js"></script>
+
+</body>
+
+</html>

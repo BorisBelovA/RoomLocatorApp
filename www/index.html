@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no
+		initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+    <title>Eddystone Demo</title>
+</head>
+
+<style>
+    #buttons{
+        display: none;
+    }
+</style>
+
+<body>
+<h1>Compose-Demo</h1>
+
+<div id="buttons">
+    <button id="start-scan">Начать сканирование</button>
+    <button id="stop-scan">Закончить сканирование</button>
+    <button id="show-btn">Покажи, что есть</button>
+    <button id="show-beacons">Покажи, что есть в beacons{}</button>
+    <button id="filter">Отфильтровать</button>
+</div>
+<div id="message"></div>
+<div id="found-beacons"></div>
+<div id="beacons-arr"></div>
+<div id="rssi-arr"></div>
+<div id="filtered-rssi-arr"></div>
+
+
+<div id="kalman-area"></div>
+<!--
+<script src= "js/index.js"></script>
+-->
+<script src= "cordova.js"></script>
+<!--
+<script src= "js/app.js"></script>
+-->
+<script src= "js/bundle.js"></script>
+
+</body>
+
+</html>

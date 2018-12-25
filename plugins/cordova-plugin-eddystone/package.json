@@ -1,0 +1,52 @@
+{
+  "_from": "cordova-plugin-eddystone",
+  "_id": "cordova-plugin-eddystone@1.3.0",
+  "_inBundle": false,
+  "_integrity": "sha1-MR5XiXG261Tczec8ldLSmFMn2fY=",
+  "_location": "/cordova-plugin-eddystone",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "cordova-plugin-eddystone",
+    "name": "cordova-plugin-eddystone",
+    "escapedName": "cordova-plugin-eddystone",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-eddystone/-/cordova-plugin-eddystone-1.3.0.tgz",
+  "_shasum": "311e578971b6eb54dccde73c95d2d2985327d9f6",
+  "_spec": "cordova-plugin-eddystone",
+  "_where": "D:\\Diplom App\\RoomLocatorApp",
+  "author": {
+    "name": "Evothings"
+  },
+  "bugs": {
+    "url": "https://github.com/evothings/cordova-eddystone/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-plugin-eddystone",
+    "platforms": []
+  },
+  "deprecated": false,
+  "description": "Cordova/PhoneGap plugin for Eddystone beacons.",
+  "homepage": "https://github.com/evothings/cordova-eddystone#readme",
+  "keywords": [
+    "Eddystone",
+    "Beacons",
+    "ecosystem:cordova"
+  ],
+  "license": "Apache 2.0",
+  "name": "cordova-plugin-eddystone",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evothings/cordova-eddystone.git"
+  },
+  "version": "1.3.0"
+}
