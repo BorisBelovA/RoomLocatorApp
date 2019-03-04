@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no
 		initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
     <title>Eddystone Demo</title>
+    <link rel="stylesheet" href="css/Map.css">
 </head>
 <!--Перед Билдом замени block на none-->
 <style>
@@ -75,12 +76,17 @@
         <img src="img/room2.svg" width="460" height="290" alt="image format png" />
     &ndash;&gt;
 </object>-->
+<!--
 <object type="image/svg+xml" data="img/HomePlanWeb.svg" width="1072" height="841" id="object">
-    <!--
+    &lt;!&ndash;
         <img src="img/room2.svg" width="460" height="290" alt="image format png" />
-    -->
+    &ndash;&gt;
 </object>
+-->
 
+<div id="map">
+
+</div>
 
 
 <div >
@@ -93,10 +99,7 @@
 <div id="buttons">
     <button id="start-scan">Начать сканирование</button>
     <button id="stop-scan">Закончить сканирование</button>
-    <!--<button id="show-btn">Покажи, что есть</button>-->
-    <!--<button id="show-beacons">Покажи, что есть в beacons{}</button>-->
     <button id="drawUser">DrawUser</button>
-    <!--<button id="rssiFilter">Отфильтруй по RSSI</button>-->
 </div>
 <div id="message"></div>
 <div id="found-beacons"></div>
@@ -117,28 +120,7 @@
 <script src= "js/bundle.js"></script>
 
 <script src="js/UIBundle.js"></script>
-<!--<script>
-    let object = document.getElementById('object');
-    let Document = object.contentDocument;
-    //let svg = Document.childNodes[1];
-    let svg = Document.querySelector("svg");
-    svg.addEventListener('click', function (event) {
-        console.log(event.target.id)
-    })
-    let element = svg.querySelector(`#Entrance`);
 
-    let children = element.childNodes;
-    console.log(element)
-    console.log(children)
-    arr = ['path', 'rect', 'polyline','line'];
-    for (child in children){
-        if(arr.indexOf(children[child].tagName)!== -1){
-            console.log('yes')
-            children[child].setAttribute('class','active-room')
-        }
-
-    }
-</script>-->
 </body>
 
 </html>
