@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1072 840.5" style="enable-background:new 0 0 1072 840.5;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;stroke:#000000;stroke-miterlimit:10;}
+	.st1{fill:#FFFFFF;stroke:#000000;stroke-width:1.0994;stroke-miterlimit:10;}
+	.st2{fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st3{fill:none;stroke:#FFFFFF;stroke-miterlimit:10;}
+	.st4{fill:none;stroke:#000000;stroke-width:0.9221;stroke-miterlimit:10;}
+	.st5{fill:none;stroke:#000000;stroke-width:0.9194;stroke-miterlimit:10;}
+	.st6{fill:#FFFFFF;stroke:#000000;stroke-width:1.0837;stroke-miterlimit:10;}
+	.st7{fill:#FFFFFF;stroke:#000000;stroke-width:1.2873;stroke-miterlimit:10;}
+	.st8{fill:none;stroke:#000000;stroke-width:3;stroke-miterlimit:10;}
+	.st9{font-family:'MyriadPro-Regular';}
+	.st10{font-size:12px;}
+</style>
+<polyline id="Kitchen" class="st0" points="301,597.5 301,572.5 1,572.5 1,832.5 301,832.5 301,676 "/>
+<polyline id="Secondbedroom" class="st1" points="619.5,596.7 619.5,573.1 1056.4,573.1 1056.4,831.9 619.5,831.9 619.5,675.9 "/>
+<polyline class="st2" points="993.8,172 1057,172 1057,572 657,572 657,383.2 "/>
+<polyline class="st2" points="657,289.2 657,172 914.5,172 "/>
+<line class="st3" x1="914.5" y1="172" x2="993.8" y2="172"/>
+<polyline id="Wardrobe_1_" class="st4" points="913.5,171 697,171 697,1 1057,1 1057,171 992.8,171 "/>
+<polyline id="Entrance" class="st5" points="470.5,171 456.5,171 456.5,1 696.5,1 696.5,171 655.5,171 "/>
+<polyline id="Livingroom" class="st2" points="470.5,385.5 470.5,572 0.5,572 0.5,172 470.5,172 470.5,289.5 "/>
+<polyline id="WC" class="st6" points="380.3,682 399,682 399,832 302,832 302,682 317.7,682 "/>
+<polyline id="Bathroom" class="st7" points="574.3,682 619.1,682 619.1,832 400.3,832 400.3,682 503,682 "/>
+<line id="Entrance-way" class="st8" x1="546" y1="146.5" x2="546" y2="340.5"/>
+<line id="Firstbedroom-way" class="st8" x1="546" y1="339.5" x2="719" y2="339.5"/>
+<line id="Livingroom-way" class="st8" x1="546" y1="339.5" x2="410" y2="339.5"/>
+<line id="_x39_" class="st8" x1="546" y1="341.5" x2="546" y2="634.5"/>
+<line id="Bathroom-way" class="st8" x1="546" y1="633.5" x2="546" y2="724.5"/>
+<line id="Secondbedroom-way" class="st8" x1="546" y1="633.5" x2="669" y2="633.5"/>
+<line id="_x31_0" class="st8" x1="546" y1="633.5" x2="358" y2="633.5"/>
+<line id="WC-way" class="st8" x1="358" y1="633.5" x2="358" y2="719.5"/>
+<line id="Kitchen-way" class="st8" x1="358" y1="633.5" x2="245" y2="633.5"/>
+<line id="Firstbedroom-Wardrobe" class="st8" x1="719" y1="339.5" x2="953" y2="339.5"/>
+<text transform="matrix(1 0 0 1 53.4854 207.9814)" class="st9 st10">Livingroom </text>
+<text transform="matrix(1 0 0 1 53.4854 222.3814)" class="st9 st10">Гостинная</text>
+<text transform="matrix(1 0 0 1 499 41.5)" class="st9 st10">Entrance </text>
+<text transform="matrix(1 0 0 1 499 55.9)" class="st9 st10">Прихожая</text>
+<text transform="matrix(1 0 0 1 746 33.5)" class="st9 st10">Wardrobe </text>
+<text transform="matrix(1 0 0 1 746 47.9)" class="st9 st10">Гардероб</text>
+<text transform="matrix(1 0 0 1 878 423.5)" class="st9 st10">Firstbedroom </text>
+<text transform="matrix(1 0 0 1 878 437.9)" class="st9 st10">Первая спальня</text>
+<text transform="matrix(1 0 0 1 35 588.5)" class="st9 st10">Kitchen </text>
+<text transform="matrix(1 0 0 1 35 602.9)" class="st9 st10">Кухня</text>
+<text transform="matrix(1 0 0 1 329 751.5)" class="st9 st10">WC</text>
+<text transform="matrix(1 0 0 1 450 768.5)" class="st9 st10">Bathroom </text>
+<text transform="matrix(1 0 0 1 450 782.9)" class="st9 st10">Ванная</text>
+<text transform="matrix(1 0 0 1 863 717.5)" class="st9 st10">Secondbedroom </text>
+<text transform="matrix(1 0 0 1 863 731.9)" class="st9 st10">Вторая спальня</text>
+<line id="Wardrobe-way" class="st8" x1="953" y1="339.5" x2="953" y2="122.5"/>
+</svg>

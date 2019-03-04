@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="../css/Map.css"?>
+
+<!-- Generator: Adobe Illustrator 22.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1072 840.5" style="enable-background:new 0 0 1072 840.5;" xml:space="preserve">
+
+<polyline id="Kitchen" class="room" points="301,597.5 301,572.5 1,572.5 1,832.5 301,832.5 301,676 "/>
+<polyline id="Secondbedroom" class="room" points="619.5,596.7 619.5,573.1 1056.4,573.1 1056.4,831.9 619.5,831.9 619.5,675.9 "/>
+<g id="Firstbedroom">
+	<polyline class="room" points="993.8,172 1057,172 1057,572 657,572 657,383.2 	"/>
+	<polyline class="room" points="657,289.2 657,172 914.5,172 	"/>
+</g>
+<polyline id="Wardrobe" class="room" points="913.5,171 697,171 697,1 1057,1 1057,171 992.8,171 "/>
+<polyline id="Entrance" class="room" points="470.5,171 456.5,171 456.5,1 696.5,1 696.5,171 655.5,171 "/>
+<polyline id="Livingroom" class="room" points="470.5,385.5 470.5,572 0.5,572 0.5,172 470.5,172 470.5,289.5 "/>
+<polyline id="WC" class="room" points="380.3,682 399,682 399,832 302,832 302,682 317.7,682 "/>
+<polyline id="Bathroom" class="room" points="574.3,682 619.1,682 619.1,832 400.3,832 400.3,682 503,682 "/>
+<line id="Entrance-way" class="road" x1="546" y1="146.5" x2="546" y2="340.5"/>
+<line id="Firstbedroom-way" class="road" x1="546" y1="339.5" x2="719" y2="339.5"/>
+<line id="Livingroom-way" class="road" x1="546" y1="339.5" x2="410" y2="339.5"/>
+<line id="p-9" class="road" x1="546" y1="341.5" x2="546" y2="634.5"/>
+<line id="p-10" class="road" x1="546" y1="341.5" x2="546" y2="634.5"/>
+<line id="Bathroom-way" class="road" x1="546" y1="633.5" x2="546" y2="724.5"/>
+<line id="Secondbedroom-way" class="road" x1="546" y1="633.5" x2="669" y2="633.5"/>
+<line id="p-11" class="road" x1="546" y1="633.5" x2="358" y2="633.5"/>
+<line id="WC-way" class="road" x1="358" y1="633.5" x2="358" y2="719.5"/>
+<line id="Kitchen-way" class="road" x1="358" y1="633.5" x2="245" y2="633.5"/>
+<line id="Firstbedroom-Wardrobe-way" class="road" x1="719" y1="339.5" x2="953" y2="339.5"/>
+<line id="Wardrobe-way" class="road" x1="953" y1="339.5" x2="953" y2="122.5"/>
+<text transform="matrix(1 0 0 1 53.4854 207.9814)" class="st8 st7">Livingroom </text>
+<text transform="matrix(1 0 0 1 53.4854 222.3814)" class="st8 st7">Гостинная</text>
+<text transform="matrix(1 0 0 1 499 41.5)" class="st8 st7">Entrance </text>
+<text transform="matrix(1 0 0 1 499 55.9)" class="st8 st7">Прихожая</text>
+<text transform="matrix(1 0 0 1 746 33.5)" class="st8 st7">Wardrobe </text>
+<text transform="matrix(1 0 0 1 746 47.9)" class="st8 st7">Гардероб</text>
+<text transform="matrix(1 0 0 1 878 423.5)" class="st8 st7">Firstbedroom </text>
+<text transform="matrix(1 0 0 1 878 437.9)" class="st8 st7">Первая спальня</text>
+<text transform="matrix(1 0 0 1 35 588.5)" class="st8 st7">Kitchen </text>
+<text transform="matrix(1 0 0 1 35 602.9)" class="st8 st7">Кухня</text>
+<text transform="matrix(1 0 0 1 329 751.5)" class="st8 st7">WC</text>
+<text transform="matrix(1 0 0 1 450 768.5)" class="st8 st7">Bathroom </text>
+<text transform="matrix(1 0 0 1 450 782.9)" class="st8 st7">Ванная</text>
+<text transform="matrix(1 0 0 1 863 717.5)" class="st8 st7">Secondbedroom </text>
+<text transform="matrix(1 0 0 1 863 731.9)" class="st8 st7">Вторая спальня</text>
+</svg>

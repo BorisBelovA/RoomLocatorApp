@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1115.3 845.7" style="enable-background:new 0 0 1115.3 845.7;" xml:space="preserve">
+<style type="text/css">
+	.st0{stroke:#000000;stroke-miterlimit:10;}
+	.st1{stroke:#000000;}
+	.st2{stroke:#000000;stroke-dasharray:3,3;}
+</style>
+<path id="Entrance" pointer-events="none" class="st0" d="M413.5,176.2V6.2h300v170h-10v-160h-280v160H413.5z"/>
+<g id="Livingroom">
+	<path pointer-events="none" class="st0" d="M476.5,571.2H6.5v-400h470v10h-460v380h460V571.2z"/>
+	<rect x="471.5" y="171.2" pointer-events="none" class="st1" width="10" height="122"/>
+	<rect x="471.5" y="451.2" pointer-events="none" class="st1" width="10" height="120"/>
+</g>
+<g id="Wardrobe">
+	<path pointer-events="none" class="st0" d="M708.5,176.2V6.2h400v170h-10v-160h-380v160H708.5z"/>
+	<rect x="708.5" y="176.7" pointer-events="none" class="st1" width="210" height="10"/>
+	<rect x="1028.5" y="174.7" pointer-events="none" class="st1" width="80" height="10"/>
+</g>
+<g id="Firstbedroom">
+	<rect x="703.5" y="174.7" pointer-events="none" class="st1" width="10" height="155"/>
+	<rect x="703.5" y="421.2" pointer-events="none" class="st1" width="10" height="155"/>
+	<rect x="708.5" y="566.2" pointer-events="none" class="st1" width="400" height="10"/>
+	<rect x="1098.5" y="175.2" pointer-events="none" class="st1" width="10" height="400"/>
+	<rect x="713.5" y="176.7" pointer-events="none" class="st1" width="205" height="10"/>
+	<rect x="1028.5" y="174.7" pointer-events="none" class="st1" width="80" height="10"/>
+</g>
+<g id="Secondbedroom">
+	<path pointer-events="none" class="st0" d="M648.5,566.2h460v270h-460v-10h450v-250h-450V566.2z"/>
+	<rect x="641.5" y="686.2" pointer-events="none" class="st2" width="10" height="150"/>
+	<rect x="641.5" y="566.2" pointer-events="none" class="st2" width="10" height="40"/>
+</g>
+<g id="Bathroom">
+	<path pointer-events="none" class="st0" d="M651.5,696.2v140h-180v-140h10v130h160v-130H651.5z"/>
+	<rect x="606.5" y="688.7" pointer-events="none" class="st1" width="35" height="10"/>
+	<rect x="471.5" y="688.7" pointer-events="none" class="st1" width="55" height="10"/>
+</g>
+<g id="WC">
+	<path pointer-events="none" class="st0" d="M481.5,696.2v140h-110v-140h10v130h90v-130H481.5z"/>
+	<rect x="376.5" y="688.7" pointer-events="none" class="st1" width="10" height="10"/>
+	<rect x="466.5" y="688.7" pointer-events="none" class="st1" width="10" height="10"/>
+</g>
+<g id="Kitchen">
+	<path pointer-events="none" class="st0" d="M371.5,836.2H6.5v-275h365v10h-355v255h355V836.2z"/>
+	<rect x="371.5" y="686.2" pointer-events="none" class="st1" width="10" height="150"/>
+	<rect x="371.5" y="571.2" pointer-events="none" class="st1" width="10" height="35"/>
+</g>
+</svg>

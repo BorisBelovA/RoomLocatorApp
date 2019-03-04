@@ -3,7 +3,7 @@ class Beacon {
         this.UID = UID;
         this.RSSI = RSSI;
         this.TxPower = TxPower;
-        this.data = [-20,-31,-21,-24,-43,-58,-52,-49,-48,-59,-48,-44,-63,-66,-64,-70,-55,-47,-54,-45,-52,-66,-71,-55,-56,-67,-58,-76,-50,-50,-55,-46,-69,-57,-41,-58,-39,-36,-34,-29,-32];
+        this.data = [];
         this.data.push(RSSI);
         this.filtered_data = [];
         this.timeStamp = Date.now()
@@ -21,8 +21,16 @@ class Beacon {
         return this.RSSI;
     }
 
+    setRSSI(rssi){
+        this.RSSI = rssi;
+    }
+
     getData(){
         return this.data;
+    }
+
+    setData(data_arr){
+        this.data = data_arr;
     }
 
     getTimeStamp(){
@@ -52,6 +60,10 @@ class Beacon {
         let generated_data = parseInt(Math.random() * (60 - 40) + 40);
         return generated_data;
     }
+
+    setTimeStamp(timeStamp){
+        this.timeStamp = timeStamp
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -63,6 +75,7 @@ function addBeacon() {
     let uid = document.querySelector('input[name="UID"]').value;
     let rssi = parseInt(document.querySelector('input[name="RSSI"]').value);
     let txPower = parseInt(document.querySelector('input[name="TxPower"]').value);
+    let timeStamp = Date.now();
     //Создаем новый объект
     let beacon = new Beacon(uid,rssi,txPower);
 
@@ -71,10 +84,28 @@ function addBeacon() {
     }else{                                                          //Если метка уже есть в словаре, то доплняем массив с данными RSSI
         let temp = beacons[uid];
         temp.appendData(rssi)
+        temp.setTimeStamp(timeStamp);
+        console.log('Temp - ' + temp)
         beacons[uid] = temp;
     }
     console.log(beacons);
 }
+
+function removeOldBeacons() {
+    let timeNow = Date.now();
+    for (let key in beacons)
+    {
+        // Only show beacons updated during the last 0,5 seconds.
+        let beacon = beacons[key];
+        let timeStamp = beacon.getTimeStamp();
+        if (timeStamp + 1000 < timeNow)
+        {
+            delete beacons[key];
+        }
+    }
+}
+
+
 
 function calculateDistance(beacon_obj) {
     //Получить данные о метке
@@ -142,6 +173,7 @@ document.querySelector('#show').addEventListener('click', function () {
         html=htmlBeacon;
         document.getElementById('container').appendChild(html);
     }
+    console.log(beacons);
 });
 
 
@@ -162,8 +194,61 @@ document.querySelector('#filter').addEventListener('click', function () {
         console.log(data)
         data = data.slice(data.length-20, data.length)
         console.log(data)
-
     }
 })
+
+document.querySelector('#removeOld').addEventListener('click', function () {
+    removeOldBeacons();
+})
+
+
+function sortBeaconsByRSSI() {
+    //Проходим по beacons{} и сортируем по большему RSSI
+    /*let beacons2 = {
+        'asf':{name:"asf", rssi:-55},
+        'dsd':{name:"dsd", rssi:-70},
+        'fhg':{name:"fhg", rssi:-45},
+        'lhi':{name:"lhi", rssi:-90}
+    }
+    let sortable = []
+    for (key in beacons2){
+        sortable.push(beacons2[key])
+    }
+    sortable.sort(function (a,b) {
+        return b.rssi - a.rssi;
+    })
+    beacons2={}
+    sortable.map((elem)=>{
+        beacons2[elem.name] = elem
+    })*/
+
+    //Проходим по beacons{} и сортируем по большему RSSI
+    let sortable = []
+    for (key in beacons){
+        sortable.push(beacons[key])
+    }
+    sortable.sort(function (a,b) {
+        return b.getRSSI() - a.getRSSI();
+    })
+    beacons={}
+    sortable.map((elem)=>{
+        beacons[elem.UID] = elem
+    })
+    let drawable = [];
+    let i = 0
+    for(key in beacons){
+        if (i!==3){
+            drawable.push(beacons[key]);
+            i+=1;
+        }else {
+            break
+        }
+    }
+    console.log(drawable[0].getData().slice(-4))
+   
+}
+
+document.querySelector('#rssiFilter').addEventListener('click', sortBeaconsByRSSI);
+
 
 

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="room" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 412 400" style="enable-background:new 0 0 412 400;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;}
+	.st1{fill:#AAB214;}
+	.st2{fill:#BFBF2E;}
+</style>
+<g id="walls">
+	<rect x="1.5" y="0.7" class="st0" width="409.1" height="398.6"/>
+	<path d="M410.1,1.4v397.2H1.9V1.4H410.1 M411,0H1v400h410V0L411,0z"/>
+</g>
+<g id="bed-1">
+	<rect x="159.5" y="2" class="st0" width="251" height="119"/>
+	<path d="M410,2.5v118H160V2.5H410 M411,1.5H159v120h252V1.5L411,1.5z"/>
+</g>
+<g id="bed-2">
+	<rect x="158.5" y="279" class="st0" width="251" height="119"/>
+	<path d="M409,279.5v118H159v-118H409 M410,278.5H158v120h252V278.5L410,278.5z"/>
+</g>
+<g id="table-1">
+	<rect x="39.3" y="2.7" class="st0" width="119.4" height="63"/>
+	<path d="M158.4,3.2v62H39.6v-62H158.4 M159,2.2H39v64h120V2.2L159,2.2z"/>
+</g>
+<g id="table-2">
+	<rect x="2.2" y="284.3" class="st0" width="91" height="113"/>
+	<path d="M92.7,284.8v112h-90v-112H92.7 M93.7,283.8h-92v114h92V283.8L93.7,283.8z"/>
+</g>
+<g id="beacon-1">
+	<circle class="st1" cx="403" cy="146.7" r="4.5"/>
+</g>
+<g id="beacon-2">
+	<circle class="st2" cx="81.7" cy="343.2" r="5"/>
+</g>
+<g id="beacon-3">
+	<circle class="st2" cx="25" cy="11.5" r="5"/>
+</g>
+</svg>

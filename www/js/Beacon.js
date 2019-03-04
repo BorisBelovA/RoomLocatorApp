@@ -7,7 +7,8 @@ module.exports = class Beacon {
         this.data = [];
         this.data.push(RSSI);
         this.filtered_data = [];
-        this.timeStamp = Date.now()
+        this.timeStamp = Date.now();
+        this.distance = null;
     };
 
     getUID(){
@@ -22,12 +23,20 @@ module.exports = class Beacon {
         return this.RSSI;
     }
 
+    setRSSI(rssi){
+        this.RSSI = rssi;
+    }
+    
    /* setRSSI(rssi){
         this.RSSI = rssi;
     }*/
 
     getData(){
         return this.data;
+    }
+
+    setData(data_arr){
+        this.data = data_arr;
     }
 
     getTimeStamp(){
@@ -49,9 +58,21 @@ module.exports = class Beacon {
         temp.push(filtered_rssi);*/
         this.filtered_data = filtered_rssi;
     }
+    
+    setTimeStamp(timeStamp){
+        this.timeStamp = timeStamp
+    }
+    
     generateData(){
         let generated_data = parseInt(Math.random() * (60 - 40) + 40);
         return generated_data;
+    }
+    getDistance(){
+        return this.distance;
+    }
+    
+    setDistance(distance){
+        this.distance = distance
     }
 }
 

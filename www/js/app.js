@@ -1,13 +1,57 @@
-
+//import {getTrilateration} from './Functions/trilateration';
 (function(){
     var Beacon = require('./Beacon');
     //var KF = require('./Kalman');
     var KalmanFilter = require('kalmanjs').default;
-    var kalmanFilter = new KalmanFilter({R: 3, Q: 30});
+    var kalmanFilter = new KalmanFilter({R: 3, Q: 40});
+    var getTrilateration = require('./Functions/trilateration');
     var recieved_beacons = {}               //Словарь для принятых меток, даные здесь отличаются от beacons
     var beacons = {}                        //Созданный мною словарь
     var timer = null;
+    const drawFunctions = require("./Functions/drawFunctions");
+    
+    const LENGTH_OF_BEACON_DATA_ARR = 30;
 
+    /*Room
+        '5bd576c1a37613dd9916':{
+            uid:'5bd576c1a37613dd9916',
+            coord_x:5,
+            coord_y:5
+        },
+        'f2ad57ae245813068c18':{
+            uid:'f2ad57ae245813068c18',
+            coord_x:400,
+            coord_y:140
+        },
+        '0fe399fbedb1dac798c8':{
+            uid:'f2ad57ae245813068c18',
+            coord_x:130,
+            coord_y:380
+        },*/
+
+    /*  HomeMap
+        cx="656.2" cy="172" r="0.8"
+        cx="618.7" cy="573.1" r="0.8"
+        cx="471.3" cy="385.5" r="0.8"*/
+
+    const DATABASE_BEACONS = {
+        '5bd576c1a37613dd9916':{
+            uid:'5bd576c1a37613dd9916',
+            coord_x:470.5 ,
+            coord_y:289.5
+        },
+        'f2ad57ae245813068c18':{
+            uid:'f2ad57ae245813068c18',
+            coord_x:618.7,
+            coord_y:573.1
+        },
+        '0fe399fbedb1dac798c8':{
+            uid:'0fe399fbedb1dac798c8',
+            coord_x:482.525,
+            coord_y:633.5
+        },
+    }
+    
     function onDeviceReady() {
         document.querySelector('#buttons').style.display = 'block';
         alert('I am ready');
@@ -22,7 +66,8 @@
         timer = setInterval(function () {
             handleBeacons();
             removeOldRecievedBeacons();
-            displayBeacons();
+            //displayBeacons();
+            updateBeaconList();
         },500);
     }
 
@@ -83,6 +128,8 @@
 
     function updateBeaconList() {
         removeOldBeacons();
+        //removeFarAwayBeacons();
+        sortBeaconsByRSSI();
         displayBeacons();
     }
 
@@ -95,7 +142,7 @@
         {
             // Only show beacons updated during the last 0,5 seconds.
             let beacon = recieved_beacons[key];
-            if (beacon.timeStamp + 500 < timeNow)
+            if (beacon.timeStamp + 1500 < timeNow)
             {
                 delete recieved_beacons[key];
             }
@@ -111,6 +158,16 @@
             let timeStamp = beacon.getTimeStamp();
             if (timeStamp + 1000 < timeNow)
             {
+                delete beacons[key];
+            }
+        }
+    }
+
+    function removeFarAwayBeacons() {
+        for (let key in beacons){
+            let rssi = beacons[key].getRSSI(),
+                txPower = beacons[key].getTxPower();
+            if (txPower - rssi > 20){
                 delete beacons[key];
             }
         }
@@ -138,20 +195,29 @@
                 beacons[uid] = new Beacon(uid,bid,rssi,txPower);
             }else{
                 let temp = beacons[uid];
-                temp.appendData(rssi)
+                let data_arr = temp.getData()
+                temp.setRSSI(rssi)
+                if((data_arr.length === LENGTH_OF_BEACON_DATA_ARR)|| (data_arr.length> LENGTH_OF_BEACON_DATA_ARR)){ //Если длина массива больше константы
+                                                                                                                    //То отрезаем последние 20 элементов
+                    temp.setData(data_arr.slice((-20)))                                                              //И ставим их на начало
+                }else {
+                    temp.appendData(rssi)                                                                           //Иначе просто добавляем RSSI в массив
+                }
+                temp.setTimeStamp(timeStamp);
                 beacons[uid] = temp;
             }
             filterBeaconData(beacons[uid]);
         }
+        //sortBeaconsByRSSI();
     }
 
     function filterBeaconData(beacon){
         //Взять метку
         //Выбрать ее массив с rssi
-        //сделать map на жтот массив сприменением фильтра калмана
+        //сделать map на этот массив сприменением фильтра калмана
         //запихнуть этот массив обратно в метку
         let data = beacon.getData();
-        data = data.slice(data.length-15, data.length);
+        data = data.slice(data.length-20, data.length);
         let filtered_data = data.map(function (elem) {
             return parseInt(kalmanFilter.filter(elem));
         })
@@ -170,31 +236,120 @@
         return distance;
     }
 
+    function sortBeaconsByRSSI() {
+        //Проходим по beacons{} и сортируем по большему RSSI
+        let sortable = []
+        for (key in beacons){
+            sortable.push(beacons[key])
+        }
+        sortable.sort(function (a,b) {
+            return b.getRSSI() - a.getRSSI();
+        })
+        beacons={}
+        sortable.map((elem)=>{
+            beacons[elem.UID] = elem
+        })
+    }
+
     function displayBeacons() {
         let element = document.getElementById('found-beacons');
         while(element.firstChild){
             element.removeChild(element.firstChild)
         }
         let html = '';
-        for (key in beacons){
-            let beacon = beacons[key];
-            let htmlBeacon = document.createElement('p')
-            htmlBeacon.innerHTML = "UID = " + beacon.getUID()
-                + "RSSI = " + beacon.getRSSI() + "<br>"
-                + "TxPower = " + beacon.getTxPower() + "<br>"
-                + "TimeStamp = : " + beacon.getTimeStamp() + "<br>"
-                + "Data : " + beacon.getData() + "<br>"
-                + "Filtered Data : " + beacon.getFilteredData() + "<br>"
-                + "Distance : " + calculateDistanceFromBeacon(beacon) + "<br>"
-            html=htmlBeacon;
-            document.getElementById('found-beacons').appendChild(html);
+        if (Object.keys(beacons).length == 0){
+            showMessage('No beacons found');
+        }else{
+            for (key in beacons){
+                let beacon = beacons[key];
+                let htmlBeacon = document.createElement('p')
+                //let uid = '5bd576c1a37613dd9916';
+
+                htmlBeacon.innerHTML = "UID = " + beacon.getUID()+'<br>'
+                    + "RSSI = " + beacon.getRSSI() + "<br>"
+                    + "TxPower = " + beacon.getTxPower() + "<br>"
+                    + "TimeStamp = : " + beacon.getTimeStamp() + "<br>"
+                    + "Data : " + beacon.getData() + "<br>"
+                    + "Filtered Data : " + beacon.getFilteredData() + "<br>"
+                    + "Distance : " + calculateDistanceFromBeacon(beacon) + "<br>"
+                html=htmlBeacon;
+                document.getElementById('found-beacons').appendChild(html);
+            }
+            drawUserOnMap();
         }
+    }
+
+    function drawUserOnMap() {
+        //На данном этапе beacons{} уже отсортирован по мощности RSSI
+        //let coords = [{x:5,y:5,distance:265},{x:445,y:140,distance:280},{x:150,y:275,distance:distance}]]
+        //drawable = [{UID: "5f-a2-b6-a6-f5", RSSI: -45, TxPower: -60, data: Array(1), filtered_data: Array(0), …}]
+        //Получить данные о дистанции
+        //Если меньше 3, то пишем - мало данных
+        //Иначе рисуем
+        let drawable = [];
+        let i = 0
+        for(key in beacons){
+            if (i!==3){
+                drawable.push(beacons[key]);
+                i+=1;
+            }else {
+                break
+            }
+        };
+        /*let pos1 = {x:5,y:5,distance:265},
+            pos2 = {x:445,y:140,distance:280},
+            pos3 = {x:150,y:275,distance:120};*/
+        if(drawable.length<3){
+            showMessage('Not Enough Data to Draw You');
+        }else {
+            showMessage('');
+            let element = document.querySelector('#distances');
+            while(element.firstChild){
+                element.removeChild(element.firstChild)
+            }
+            for(let i = 0; i<drawable.length; i++){
+                let beacon = drawable[i];
+                beacon.setDistance(calculateDistanceFromBeacon(beacon));
+                let distance = (beacon.getDistance()*80)|0;
+                let htmlDistance = document.createElement('p');
+                htmlDistance.innerHTML = 'Distance from '+beacon.getUID() + ' = ' + distance + ' ['
+                    + DATABASE_BEACONS[beacon.getUID()].coord_x +','+
+                    + DATABASE_BEACONS[beacon.getUID()].coord_y + ']';
+                element.appendChild(htmlDistance);
+            }
+            let pos1 = {x:DATABASE_BEACONS[drawable[0].getUID()].coord_x, y:DATABASE_BEACONS[drawable[0].getUID()].coord_y , distance:(drawable[0].getDistance()*70)|0},
+                pos2 = {x:DATABASE_BEACONS[drawable[1].getUID()].coord_x, y:DATABASE_BEACONS[drawable[1].getUID()].coord_y , distance:(drawable[1].getDistance()*70)|0},
+                pos3 = {x:DATABASE_BEACONS[drawable[2].getUID()].coord_x, y:DATABASE_BEACONS[drawable[2].getUID()].coord_y , distance:(drawable[2].getDistance()*70)|0};
+            let {x,y} = getTrilateration(pos1,pos2,pos3);
+            drawFunctions.drawUser(x,y);
+        }
+
+        /*for(key in beacons){
+            let beacon = beacons[key];
+            let distance = calculateDistanceFromBeacon(beacon);
+            pos3.distance = (distance*100)|0;
+            let htmlDistance = document.createElement('p');
+            htmlDistance.innerHTML = 'Distance from '+beacon.getUID() +' : '+distance + '  pos3.distance = ' + pos3.distance;
+            element.appendChild(htmlDistance);
+        }*/
+        /*let time = Date.now();
+        let cordsEl = document.querySelector('#coords');
+        while(cordsEl.firstChild){
+            cordsEl.removeChild(cordsEl.firstChild)
+        }
+        let {x,y} = getTrilateration(pos1,pos2,pos3);
+        let htmlCoords = document.createElement('p');
+        htmlCoords.innerHTML =`coords: ${x} and ${y}. Time: ${time} and pos3: ${pos3.distance}`; //'coords: ' + x + '   ' + y + '  data   ' + time;
+
+        cordsEl.appendChild(htmlCoords);
+        drawFunctions.drawUser(x,y)*/
+
     }
 
     ///////////////////////////////// Блок функций преобразователей///////////////////////////////////
     function htmlBeaconNID(beacon) {
         return beacon.nid ?
-            'NID: ' + uint8ArrayToString(beacon.nid) + '<br/>' :  '';
+            uint8ArrayToString(beacon.nid) :  '';
     }
 
     function htmlBeaconBID(beacon) {
@@ -221,7 +376,8 @@
         var result = '';
         for (var i = 0; i < uint8Array.length; ++i)
         {
-            result += format(uint8Array[i]) + ' ';
+            //result += format(uint8Array[i]) + ' ';
+            result += format(uint8Array[i]);
         }
         return result;
     }
@@ -231,24 +387,23 @@
     }
 
     function onShowBeaconsButton(){
-        alert('Сейчас покажу');
-        let arr = '';
-        for (key in beacons){
-            let elem = document.createElement('p');
-            elem.innerHTML = "UID: " + key;
-        arr+=elem;
-        }
-        document.getElementById("beacons-arr").innerHTML = arr;
+        alert(beacons);
     }
 
     // This calls onDeviceReady when Cordova has loaded everything.
     document.addEventListener('deviceready', onDeviceReady, false);
     document.querySelector('#start-scan').addEventListener('click', onStartScanButton);
     document.querySelector('#stop-scan').addEventListener('click', onStopScanButton);
-    document.querySelector('#show-btn').addEventListener('click', onShowButton);
-    document.querySelector('#show-beacons').addEventListener('click', onShowBeaconsButton);
-
-
+    //document.querySelector('#show-btn').addEventListener('click', onShowButton);
+    //document.querySelector('#show-beacons').addEventListener('click', onShowBeaconsButton);
+    //document.querySelector('#rssiFilter').addEventListener('click', sortBeaconsByRSSI);
+    document.querySelector("#drawUser").addEventListener('click', function () {
+        let pos1 = {x:656.2,y:172,distance:265},
+            pos2 = {x:618.7,y:573.1,distance:280},
+            pos3 = {x:471.3,y:385.5,distance:120};
+        let {x,y} = getTrilateration(pos1,pos2,pos3);
+        drawFunctions.drawUser(x,y);
+    })
 
 
 })(); // End of closure.

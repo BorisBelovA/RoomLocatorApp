@@ -7,31 +7,106 @@
 		initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
     <title>Eddystone Demo</title>
 </head>
-
+<!--Перед Билдом замени block на none-->
 <style>
     #buttons{
-        display: none;
+        display: block;
     }
 </style>
 
 <body>
 <h1>Compose-Demo</h1>
 
+<!--
+<svg version="1.1" id="room" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="455" height="290"
+	 viewBox="0 0 452 280" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;}
+    .st1{fill:#AAB214;}
+    .st2{fill:#BFBF2E;}
+    .st3{fill:#BFBF2E;}
+</style>
+<g id="walls">
+	<rect x="1.5" y="-0.5" class="st0" width="449" height="280"/>
+	<path d="M450,0v279H2V0H450 M451-1H1v281h450V-1L451-1z"/>
+</g>
+<g id="bed-1">
+	<rect x="199.5" y="-0.5" class="st0" width="251" height="119"/>
+	<path d="M450,0v118H200V0H450 M451-1H199v120h252V-1L451-1z"/>
+</g>
+<g id="bed-2">
+	<rect x="199.5" y="160.5" class="st0" width="251" height="119"/>
+	<path d="M450,161v118H200V161H450 M451,160H199v120h252V160L451,160z"/>
+</g>
+<g id="table-1">
+	<rect x="1.5" y="-0.5" class="st0" width="197" height="63"/>
+	<path d="M198,0v62H2V0H198 M199-1H1v64h198V-1L199-1z"/>
+</g>
+<g id="table-2">
+	<rect x="1.5" y="166.5" class="st0" width="91" height="113"/>
+	<path d="M92,167v112H2V167H92 M93,166H1v114h92V166L93,166z"/>
+</g>
+<g id="beacon-1">
+	<circle class="st1" cx="445" cy="140" r="4.5"/>
+    &lt;!&ndash;<path d="M199,115c2.2,0,4,1.8,4,4s-1.8,4-4,4s-4-1.8-4-4S196.8,115,199,115 M199,114c-2.8,0-5,2.2-5,5s2.2,5,5,5s5-2.2,5-5
+        S201.8,114,199,114L199,114z"/>&ndash;&gt;
+</g>
+<g id="beacon-2">
+	<circle class="st2" cx="5" cy="275" r="5"/>
+    &lt;!&ndash;<path d="M93,162c2.2,0,4,1.8,4,4s-1.8,4-4,4s-4-1.8-4-4S90.8,162,93,162 M93,161c-2.8,0-5,2.2-5,5s2.2,5,5,5s5-2.2,5-5
+        S95.8,161,93,161L93,161z"/>&ndash;&gt;
+</g>
+    <g id="beacon-3">
+        <circle class="st3" cx="5" cy="5" r="5"/>
+    </g>
+</svg>
+-->
+
+<!--<object type="image/svg+xml" data="img/room2.svg" width="410" height="400" id="object">
+</object>-->
+
+<!--<object type="image/svg+xml" data="img/HomeMap.svg" width="1056" height="830" id="object">
+    &lt;!&ndash;
+        <img src="img/room2.svg" width="460" height="290" alt="image format png" />
+    &ndash;&gt;
+</object>-->
+<!--</object><object type="image/svg+xml" data="img/HomeMap2.svg" width="1056" height="830" id="object2">
+    &lt;!&ndash;
+        <img src="img/room2.svg" width="460" height="290" alt="image format png" />
+    &ndash;&gt;
+</object>-->
+<object type="image/svg+xml" data="img/HomePlanWeb.svg" width="1072" height="841" id="object">
+    <!--
+        <img src="img/room2.svg" width="460" height="290" alt="image format png" />
+    -->
+</object>
+
+
+
+<div >
+    <label for="startNode"><input type="text" name="startNode" id="startNode" placeholder="Начальная точка"></label><br>
+    <label for="endNode"><input type="text" name="endNode" id="endNode" placeholder="Конечная точка"></label><br>
+    <button id="findPath">Поиск пути</button>
+    <button id="choose-on-map">Выбрать на карте</button>
+</div>
+
 <div id="buttons">
     <button id="start-scan">Начать сканирование</button>
     <button id="stop-scan">Закончить сканирование</button>
-    <button id="show-btn">Покажи, что есть</button>
-    <button id="show-beacons">Покажи, что есть в beacons{}</button>
-    <button id="filter">Отфильтровать</button>
+    <!--<button id="show-btn">Покажи, что есть</button>-->
+    <!--<button id="show-beacons">Покажи, что есть в beacons{}</button>-->
+    <button id="drawUser">DrawUser</button>
+    <!--<button id="rssiFilter">Отфильтруй по RSSI</button>-->
 </div>
 <div id="message"></div>
 <div id="found-beacons"></div>
 <div id="beacons-arr"></div>
-<div id="rssi-arr"></div>
-<div id="filtered-rssi-arr"></div>
+<div id="distances"></div>
+<div id="coords"></div>
 
 
 <div id="kalman-area"></div>
+
 <!--
 <script src= "js/index.js"></script>
 -->
@@ -41,6 +116,29 @@
 -->
 <script src= "js/bundle.js"></script>
 
+<script src="js/UIBundle.js"></script>
+<!--<script>
+    let object = document.getElementById('object');
+    let Document = object.contentDocument;
+    //let svg = Document.childNodes[1];
+    let svg = Document.querySelector("svg");
+    svg.addEventListener('click', function (event) {
+        console.log(event.target.id)
+    })
+    let element = svg.querySelector(`#Entrance`);
+
+    let children = element.childNodes;
+    console.log(element)
+    console.log(children)
+    arr = ['path', 'rect', 'polyline','line'];
+    for (child in children){
+        if(arr.indexOf(children[child].tagName)!== -1){
+            console.log('yes')
+            children[child].setAttribute('class','active-room')
+        }
+
+    }
+</script>-->
 </body>
 
 </html>
