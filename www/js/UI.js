@@ -47,57 +47,13 @@ function downloadMap(name){
 }
 
 
-/*
-function clickHandler(event){
-    if(CHOSE_ON_MAP_MODE){
-        if (document.querySelector('#startNode').value === ''){
-            document.querySelector('#startNode').value = event.target.id;
-        }else {
-            document.querySelector('#endNode').value = event.target.id;
-        }
-        if (document.querySelector('#startNode').value !== '' && document.querySelector('#endNode').value !== ''){
-            CHOSE_ON_MAP_MODE = false;
-        }
-    }else {
-        console.log(event.target.id, event.target);
-    }
-}
-
-document.onkeydown = function(evt) {
-    evt = evt || window.event;
-    var isEscape = false;
-    if ("key" in evt) {
-        isEscape = (evt.key === "Escape" || evt.key === "Esc");
-    } else {
-        isEscape = (evt.keyCode === 27);
-    }
-    if (isEscape) {
-        map = getSVGMap();
-        clearMap(map, prevStartNode, prevEndNode, prevPath);
-    }
-};
-*/
 document.addEventListener('CustomEvent', function () {
     console.log('custom event happend')
 })
 document.addEventListener('DOMContentLoaded', function () {
     console.log('loaded');
     downloadMap('home');
-    /*for (let i = 0; i<children.length; i++){
-        let id = children[i].id;
-        if(id && id.indexOf('-way') === -1 && id.indexOf('p-') === -1){
-            nodes.push(id);
-        }
-    }*/
 
-/*    for (node in nodes){
-        getMapElementById(nodes[node]).addEventListener('click', clickHandler)
-    }
-    
-    document.querySelector("#choose-on-map").addEventListener('click', function () {
-        CHOSE_ON_MAP_MODE = true;
-    })
-    */
     document.querySelector('#findPath').addEventListener('click', function () {
         let startNode = document.querySelector('#startNode').value,
             endNode = document.querySelector('#endNode').value,
