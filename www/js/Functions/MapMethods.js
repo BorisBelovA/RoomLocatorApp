@@ -21,6 +21,35 @@ function getMapElementById(elementName){                                        
     return element;
 }
 
+function changeFloor(floorNumber) {
+    let map = getSVGMap()
+    let children = map.childNodes
+    for(child in children){
+        if(children[child].tagName === 'g'){
+            let element = children[child];
+            //Если id элемента не включает номер текущего этажа, то скрываем его, если это не элементы контроля карты
+            if((element.id.indexOf(floorNumber) === -1) && (element.id !=='svg-pan-zoom-controls')) element.setAttribute('class','hidden');
+            //Если id элемента включает в сябя номер текущего этажа, но у него скрытый класс
+            if(element.id.indexOf(floorNumber) !== -1 /*&& element.getAttribute("class") === 'hidden'*/) {
+                element.setAttribute('class','svg-pan-zoom_viewport');
+            }
+            /*if(element.id.indexOf(floorNumber) !== -1 && element.getAttribute("class") === ''){
+                element.setAttribute('class','svg-pan-zoom_viewport');
+            }*/
+        }
+    }
+    //var svgElement = document.querySelector('svg');
+    //svgPanZoom.destroy();
+    /*svgPanZoom(map,{
+        zoomEnabled: true,
+        controlIconsEnabled: true,
+        fit:true,
+        center:true,
+        viewportSelector:`.svg-pan-zoom_viewport`
+        //viewportSelector:`#Floor_${floorNumber}`
+    })*/
+}
+
 function clearMap(map, prevStartNode, prevEndNode, prevPath){
     if(getMapElementById(prevStartNode).tagName === 'g'){                           //Если элемент - составная фигура в теге g, меняем класс у ее потомков
         let children = getMapElementById(prevStartNode).childNodes;
@@ -80,7 +109,8 @@ module.exports = {
     addClass:addClass,
     getMapElementById:getMapElementById,
     clearMap:clearMap,
-    drawPath:drawPath
+    drawPath:drawPath,
+    changeFloor:changeFloor
 }
 
 

@@ -8,13 +8,6 @@
     <title>Eddystone Demo</title>
     <link rel="stylesheet" href="css/Map.css">
 </head>
-
-<style>
-    #buttons{
-        display: none;
-    }
-</style>
-
 <body>
 <h1>Locator App</h1>
 
@@ -25,18 +18,18 @@
 </object>-->
 
 <div id="map">
-
 </div>
 
-<div >
+<div id="path-container" class="hidden">
     <label for="startNode"><input type="text" name="startNode" id="startNode" placeholder="Начальная точка"></label><br>
     <label for="endNode"><input type="text" name="endNode" id="endNode" placeholder="Конечная точка"></label><br>
     <button id="findPath">Поиск пути</button>
     <button id="drawUser">DrawUser</button>
+    <button id="changeFloor">changeFloor</button>
 
 </div>
 
-<div id="buttons">
+<div id="buttons" class="hidden">
     <button id="start-scan">Начать сканирование</button>
     <button id="stop-scan">Закончить сканирование</button>
     <button id="show-btn">Покажи, что есть</button>
@@ -58,45 +51,31 @@
 <!--
 <script src= "js/app.js"></script>
 -->
+
+<script src="../node_modules/svg-pan-zoom/dist/svg-pan-zoom.js"></script>
 <script src="js/UIBundle.js"></script>
 
 <script>
-    /*function createCircle(x,y,r) {
-        let circle = document.createElementNS("http://www.w3.org/2000/svg","circle");
-        circle.setAttribute('id','user');
-        circle.setAttribute('class','user');
-        circle.setAttribute('cx',x);
-        circle.setAttribute('cy',y);
-        circle.setAttribute('r',r);
-        return circle;
-    }*/
+
+
+    //Отрабытываю отрисовку юзера на карте с интерактивом
     document.querySelector("#drawUser").addEventListener('click', function () {
-        /*let pos1 = {x:5,y:5,distance:265},
-            pos2 = {x:445,y:140,distance:280},
-            pos3 = {x:150,y:275,distance:200};
-        /!*let {x,y} = getTrilateration(pos1,pos2,pos3);
-        console.log(x,y)*!/
-        //console.log('Mi tut')
-        let svg = document.querySelector('svg');// getSVGMap();
-        if(svg.querySelector("#user") === null || svg.querySelector("#user") === undefined){
-            let circle = createCircle(200,200,5)
-            svg.appendChild(circle);
-        }else{
-            svg.querySelector("#user").remove();
-            let circle = createCircle(150,150,5);
-            svg.appendChild(circle);
-        }*/
-        /*let CURRENT_FLOOR = 1;
-        let map = document.querySelector('svg');
-        let children = map.childNodes
-        for(child in children){
-            if(children[child].tagName === 'g'){
-                if(children[child].id.indexOf(CURRENT_FLOOR) === -1) children[child].setAttribute('class','hidden');
-            }
-        }*/
+        console.log('Drawing');
+        //let event = new Event('changeFloorHandler');
+        //document.dispatchEvent(event);
+        drawUser(350,450)
     })
 
+    document.addEventListener('customEvent', function () {
+
+    })
+
+
+
+
 </script>
+
+
 
 </body>
 
