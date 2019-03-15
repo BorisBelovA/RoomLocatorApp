@@ -1,4 +1,5 @@
 const MAP_ELEMENTS = ['path', 'rect', 'polyline','line'];
+var ARR_OF_CROSS_NODES = [];
 function getSVGMap() {
     /*let object = document.getElementById('object');
     let Document = object.contentDocument*/
@@ -74,6 +75,10 @@ function clearMap(map, prevStartNode, prevEndNode, prevPath){
     for (elem in prevPath){                                                         //Меняем класс у вершин пути
         changeClass(getMapElementById(prevPath[elem]),'road');
     }
+    for(let i = 0; i<ARR_OF_CROSS_NODES.length-1; i++){
+        changeClass(getMapElementById(`${ARR_OF_CROSS_NODES[i]}-${ARR_OF_CROSS_NODES[i+1]}`),'road');
+    }
+    ARR_OF_CROSS_NODES = [];
 }
 
 function drawPath(startNode, endNode, path){
@@ -99,8 +104,26 @@ function drawPath(startNode, endNode, path){
     }
     for (elem in path){                                                         //Меняем класс у вершин пути
         changeClass(getMapElementById(path[elem]),'active-road');
-
+        if(path[elem].indexOf('Cross')!==-1){
+            ARR_OF_CROSS_NODES.push(path[elem])                                 //[Cross-1,Cross-2,...]
+        }
     }
+    console.log('Arr', ARR_OF_CROSS_NODES);
+    if(getMapElementById(`${ARR_OF_CROSS_NODES[0]}-${ARR_OF_CROSS_NODES[1]}`) === null){
+        //console.log(`${ARR_OF_CROSS_NODES[i]}-${ARR_OF_CROSS_NODES[i+1]}`)
+        ARR_OF_CROSS_NODES.reverse();
+        for(let i = 0; i<ARR_OF_CROSS_NODES.length-1; i++){
+            changeClass(getMapElementById(`${ARR_OF_CROSS_NODES[i]}-${ARR_OF_CROSS_NODES[i+1]}`),'active-road');
+        }
+    }else{
+        for(let i = 0; i<ARR_OF_CROSS_NODES.length-1; i++){
+            changeClass(getMapElementById(`${ARR_OF_CROSS_NODES[i]}-${ARR_OF_CROSS_NODES[i+1]}`),'active-road');
+        }
+        /*console.log(getMapElementById(`${ARR_OF_CROSS_NODES[i]}-${ARR_OF_CROSS_NODES[i+1]}`));
+        changeClass(getMapElementById(`${ARR_OF_CROSS_NODES[i]}-${ARR_OF_CROSS_NODES[i+1]}`),'active-road');*/
+    }
+    /*let elem1 = getMapElementById('Cross-2-Cross-3').id;
+    console.log('TestId', elem1)*/
 }
 
 module.exports = {

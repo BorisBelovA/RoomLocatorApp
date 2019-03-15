@@ -38,7 +38,8 @@
         '5bd576c1a37613dd9916':{
             uid:'5bd576c1a37613dd9916',
             coord_x:470.5 ,
-            coord_y:289.5
+            coord_y:289.5,
+            floor:1
         },
         'f2ad57ae245813068c20':{
             uid:'f2ad57ae245813068c20',
@@ -297,6 +298,7 @@
 
                 htmlBeacon.innerHTML = "UID = " + beacon.getUID()+'<br>'
                     + "RSSI = " + beacon.getRSSI() + "<br>"
+                    + "Floor = " + DATABASE_BEACONS[beacon.getUID()].floor + "<br>"
                     + "TxPower = " + beacon.getTxPower() + "<br>"
                     + "TimeStamp = : " + beacon.getTimeStamp() + "<br>"
                     + "Data : " + beacon.getData() + "<br>"
@@ -446,7 +448,7 @@
             pos2 = {x:618.7,y:573.1,distance:280},
             pos3 = {x:471.3,y:385.5,distance:120};
         let {x,y} = getTrilateration(pos1,pos2,pos3);
-        drawFunctions.drawUser(x,y);
+        drawFunctions.drawUser(x,y);        //DrawUser(x,y,FloorMap)
     })
 
 

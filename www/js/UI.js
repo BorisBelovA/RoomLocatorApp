@@ -2,6 +2,7 @@ const drawFunctions = require('./Functions/drawFunctions');
 const dejkstra = require('./algorithms/dejkstra');
 const {getSVGMap, changeClass, addClass, getMapElementById, clearMap, drawPath, changeFloor} = require('./Functions/MapMethods');
 //const svgPanZoom = require('../../node_modules/svg-pan-zoom/dist/svg-pan-zoom');
+const svgPanZoom = require('svg-pan-zoom');
 //5bd576c1a37613dd9916
 
 
@@ -20,13 +21,14 @@ var prevStartNode = '',
 
 function addSvgPanZoom(SVGMap) {
     //Добавляет SvgPanZoom к карте здания для манипуляции
-    svgPanZoom(SVGMap,{
+    let panzoom = svgPanZoom(SVGMap,{
         zoomEnabled: true,
         controlIconsEnabled: true,
         fit:true,
         center:true,
         viewportSelector:`.svg-pan-zoom_viewport`
     })
+    console.log(panzoom.zoom(2))
 }
 
 function downloadMap(name){
